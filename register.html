@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vendor Registration - My Marketplace</title>
+    <title>Register - Marketplace</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        .form-container { max-width: 500px; margin: 30px auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-        .form-group { margin-bottom: 15px; text-align: left; }
+        .form-container { max-width: 500px; margin: 30px auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: left; }
+        .form-group { margin-bottom: 15px; }
         .form-group label { display: block; margin-bottom: 5px; font-weight: bold; color: #333; }
         .form-group input, .form-group select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
-        .btn-submit { background: #007bff; color: #fff; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; width: 100%; font-size: 16px; font-weight: bold; }
+        .btn-submit { background: #007bff; color: #fff; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; width: 100%; font-size: 16px; }
         .btn-submit:hover { background: #0056b3; }
     </style>
 </head>
@@ -19,48 +19,103 @@
         <h1>My Marketplace</h1>
         <nav>
             <a href="index.html">Home</a>
-            <a href="register.html">Become a Vendor</a>
-            <a href="privacy.html">Privacy Policy</a>
-            <a href="terms.html">Terms of Service</a>
+            <a href="register.html">Sign Up</a>
+            <a href="login.html">Login</a>
         </nav>
     </header>
+
     <main>
         <div class="form-container">
-    <h2>Register Your Online Store</h2>
-    <p>Apna store banayein aur apne products hamare platform par sell karein!</p>
-    <form ="https://formspree.io/f/xoeaypyg" method="POST">
-        
-        <div class="form-group">
-            <label for="fullname">Full Name</label>
-            <input type="text" id="fullname" name="fullname" placeholder="Apna poora naam likhein" required>
+            <h2>Create Your Account</h2>
+            <p>Apna account banayein aur Buyer ya Seller ke tor par join karein!</p>
+            
+            <form id="signupForm">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="Apni email likhein" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Password (kam az kam 6 haroof)" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="role">Aap kya hain?</label>
+                    <select id="role">
+                        <option value="buyer">Buyer (Kharidar)</option>
+                        <option value="seller">Seller (Dukandar)</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn-submit">Register Now</button>
+            </form>
+            
+            <p id="message" style="margin-top: 15px; font-weight: bold; text-align: center;"></p>
         </div>
-        
-        <div class="form-group">
-            <label for="storename">Store Name</label>
-            <input type="text" id="storename" name="storename" placeholder="Apne store ya brand ka naam likhen" required>
-        </div>
-        
-        <div class="form-group">
-            <label for="phone">WhatsApp / Phone Number</label>
-            <input type="tel" id="phone" name="phone" placeholder="Contact number likhein" required>
-        </div>
-        
-        <div class="form-group">
-            <label for="category">Store Category</label>
-            <select id="category" name="category">
-                <option value="fashion">Fashion & Clothing</option>
-                <option value="electronics">Electronics & Gadgets</option>
-                <option value="shoes">Footwear</option>
-                <option value="other">Other</option>
-            </select>
-        </div>
-        
-        <button type="submit" class="btn-submit">Submit Registration</button>
-    </form>
-</div>
+    </main>
+
     <footer>
         <p>&copy; 2026 My Marketplace. All Rights Reserved.</p>
     </footer>
+
+    <!-- Firebase JavaScript SDK -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+          apiKey: "AIzaSyAvRkSG8abwv_bsy1XbyelH4I5umbKxu1k",
+          authDomain: "anwari.firebaseapp.com",
+          databaseURL: "https://anwari.firebaseio.com",
+          projectId: "anwari",
+          storageBucket: "anwari.appspot.com",
+          messagingSenderId: "959940482077",
+          appId: "1:959940482077:web:a6d92blea01960c40a22f4",
+          measurementId: "G-QLZ7Z6WT45"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        const signupForm = document.getElementById('signupForm');
+        const message = document.getElementById('message');
+
+        signupForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const role = document.getElementById('role').value;
+
+            try {
+                message.style.color = "blue";
+                message.innerText = "Account ban raha hai, intezaar karein...";
+
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+
+                await sendEmailVerification(user);
+
+                await setDoc(doc(db, "users", user.uid), {
+                    email: email,
+                    role: role,
+                    createdAt: new Date()
+                });
+
+                message.style.color = "green";
+                message.innerText = "Kamyabi! Verification email bhej di gayi hai. Apni email check karke account verify karein.";
+                
+                setTimeout(() => {
+                    window.location.href = "index.html";
+                }, 4000);
+
+            } catch (error) {
+                message.style.color = "red";
+                message.innerText = "Ghalti: " + error.message;
+            }
+        });
+    </script>
 </body>
 </html>
-
