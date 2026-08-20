@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendor Registration - My Marketplace</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .form-container { max-width: 500px; margin: 30px auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        .form-group { margin-bottom: 15px; text-align: left; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: bold; color: #333; }
+        .form-group input, .form-group select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        .btn-submit { background: #007bff; color: #fff; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; width: 100%; font-size: 16px; font-weight: bold; }
+        .btn-submit:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>My Marketplace</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="register.html">Become a Vendor</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+        </nav>
+    </header>
+    <main>
+        <div class="form-container">
+            <h2>Register Your Online Store</h2>
+            <p>Apna store banayein aur apne products hamare platform par sell karein!</p>
+            <form>
+                <div class="form-group">
+                    <label for="fullname">Full Name</label>
+                    <input type="text" id="fullname" placeholder="Apna poora naam likhein" required>
+                </div>
+                <div class="form-group">
+                    <label for="storename">Store Name</label>
+                    <input type="text" id="storename" placeholder="Apne store ya brand ka naam likhein" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">WhatsApp / Phone Number</label>
+                    <input type="tel" id="phone" placeholder="Contact number likhein" required>
+                </div>
+                <div class="form-group">
+                    <label for="category">Store Category</label>
+                    <select id="category">
+                        <option value="fashion">Fashion & Clothing</option>
+                        <option value="electronics">Electronics & Gadgets</option>
+                        <option value="shoes">Footwear</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-submit">Submit Registration</button>
+            </form>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2026 My Marketplace. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
+
