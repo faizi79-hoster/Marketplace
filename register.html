@@ -31,7 +31,7 @@
             <h2>Register Your Online Store</h2>
             <p>Apna store banayein aur apne products hamare platform par sell karein!</p>
             
-            <form id="signupForm">
+            <form id="signupForm" onsubmit="event.preventDefault();">
                 <div class="form-group">
                     <label for="fullName">Full Name</label>
                     <input type="text" id="fullName" placeholder="Apna poora naam likhein" required>
@@ -67,7 +67,7 @@
                     </select>
                 </div>
                 
-                <button type="submit" class="btn-submit">Submit Registration</button>
+                <button type="submit" id="submitBtn" class="btn-submit">Submit Registration</button>
             </form>
             
             <p id="message" style="margin-top: 15px; font-weight: bold; text-align: center;"></p>
@@ -99,18 +99,22 @@
         const auth = getAuth(app);
         const db = getFirestore(app);
 
-        const signupForm = document.getElementById('signupForm');
+        const submitBtn = document.getElementById('submitBtn');
         const message = document.getElementById('message');
 
-        signupForm.addEventListener('submit', async (e) => {
-            e.preventDefault(); // Yeh 405 error khatam karega!
-            
+        submitBtn.addEventListener('click', async () => {
             const fullName = document.getElementById('fullName').value;
             const storeName = document.getElementById('storeName').value;
             const whatsapp = document.getElementById('whatsapp').value;
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
             const category = document.getElementById('category').value;
+
+            if(!fullName || !storeName || !whatsapp || !email || !password) {
+                message.style.color = "red";
+                message.innerText = "Baraye meharbani tamam khane pur karein!";
+                return;
+            }
 
             try {
                 message.style.color = "blue";
