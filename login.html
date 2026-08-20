@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Marketplace</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .form-container { max-width: 500px; margin: 30px auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: left; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: bold; color: #333; }
+        .form-group input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        .btn-submit { background: #28a745; color: #fff; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; width: 100%; font-size: 16px; }
+        .btn-submit:hover { background: #218838; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>My Marketplace</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="signup.html">Sign Up</a>
+            <a href="login.html">Login</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="form-container">
+            <h2>Login to Your Account</h2>
+            <p>Apni email aur password ke sath login karein.</p>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="Apni email likhein" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Apna password likhein" required>
+                </div>
+                
+                <button type="submit" class="btn-submit">Login</button>
+            </form>
+            
+            <p id="message" style="margin-top: 15px; font-weight: bold; text-align: center;"></p>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 My Marketplace. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Firebase JavaScript SDK -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+        // Wahi Firebase Config jo aapne signup mein use ki thi
+        const firebaseConfig = {
+          apiKey: "AIzaSyAvRkSG8abwv_bsy1XbyelH4I5umbKxu1k",
+          authDomain: "anwari.firebaseapp.com",
+          databaseURL: "https://anwari.firebaseio.com",
+          projectId: "anwari",
+          storageBucket: "anwari.appspot.com",
+          messagingSenderId: "959940482077",
+          appId: "1:959940482077:web:a6d92blea01960c40a22f4",
+          measurementId: "G-QLZ7Z6WT45"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        const loginForm = document.getElementById('loginForm');
+        const message = document.getElementById('message');
+
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                message.style.color = "blue";
+                message.innerText = "Login ho raha hai...";
+
+                await signInWithEmailAndPassword(auth, email, password);
+
+                message.style.color = "green";
+                message.innerText = "Kamyabi! Aap login ho gaye hain.";
+
+                // 2 seconds baad home page par bhej dein
+                setTimeout(() => {
+                    window.location.href = "index.html";
+                }, 2000);
+
+            } catch (error) {
+                message.style.color = "red";
+                message.innerText = "Ghalti: " + error.message;
+            }
+        });
+    </script>
+</body>
+</html>
+
