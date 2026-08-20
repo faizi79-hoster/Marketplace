@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendor Pricing Plans - My Marketplace</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .pricing-container { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; padding: 30px; }
+        .pricing-card { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 30px; width: 280px; text-align: center; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .pricing-card h3 { color: #333; margin-bottom: 10px; }
+        .price { font-size: 28px; color: #007bff; font-weight: bold; margin: 15px 0; }
+        .pricing-card ul { list-style: none; padding: 0; margin: 20px 0; text-align: left; }
+        .pricing-card ul li { padding: 8px 0; border-bottom: 1px solid #eee; color: #555; }
+        .btn-plan { background: #28a745; color: #fff; padding: 10px 20px; text-decoration: none; border-radius: 4px; display: inline-block; font-weight: bold; width: 100%; box-sizing: border-box; margin-top: 10px; }
+        .btn-plan:hover { background: #218838; }
+        .payment-info { background: #e9ecef; padding: 15px; border-radius: 5px; margin-top: 20px; font-size: 14px; text-align: left; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>My Marketplace</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="register.html">Become a Vendor</a>
+            <a href="pricing.html">Pricing Plans</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+        </nav>
+    </header>
+    <main style="text-align: center;">
+        <h2>Choose Your Store Subscription Plan</h2>
+        <p>Apna store online chalane ke liye plan select karein aur NayaPay ke zariye payment karein.</p>
+        
+        <div class="pricing-container">
+            <!-- 1 Month Plan -->
+            <div class="pricing-card">
+                <h3>1 Month Plan</h3>
+                <div class="price">Rs. 3,000 <span style="font-size: 14px; color: #777;">/ month</span></div>
+                <ul>
+                    <li>✔ Unlimited Product Listings</li>
+                    <li>✔ Direct Customer Orders</li>
+                    <li>✔ 24/7 Support</li>
+                </ul>
+                <a href="https://wa.me/9647871477809?text=Main%201%20Month%20ka%20subscription%20lena%20chahta%20hoon.%20Yeh%20raha%20payment%20screenshot." class="btn-plan" target="_blank">Pay via WhatsApp</a>
+            </div>
+
+            <!-- 2 Months Plan -->
+            <div class="pricing-card" style="border: 2px solid #007bff;">
+                <h3 style="color: #007bff;">2 Months Plan</h3>
+                <div class="price">Rs. 5,000 <span style="font-size: 14px; color: #777;">/ 2 months</span></div>
+                <ul>
+                    <li>✔ Unlimited Product Listings</li>
+                    <li>✔ Featured Store Boost</li>
+                    <li>✔ Priority Support</li>
+                </ul>
+                <a href="https://wa.me/9647871477809?text=Main%202%20Months%20ka%20subscription%20lena%20chahta%20hoon.%20Yeh%20raha%20payment%20screenshot." class="btn-plan" target="_blank">Pay via WhatsApp</a>
+            </div>
+        </div>
+
+        <div style="max-width: 600px; margin: 20px auto;" class="payment-info">
+            <h3>💳 Payment Details:</h3>
+            <p>Aap apni payment neeche diye gaye NayaPay IBAN par bhej sakte hain:</p>
+            <ul>
+                <li><strong>NayaPay IBAN:</strong> PK33NAYA1234503059339725</li>
+                <li><strong>Account Title:</strong> Fayaz Hussain</li>
+            </ul>
+            <p>Payment karne ke baad WhatsApp button par click karke screenshot lazmi share karein taqy aapka store foran active kiya ja sake.</p>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2026 My Marketplace. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
