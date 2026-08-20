@@ -26,34 +26,38 @@
     </header>
     <main>
         <div class="form-container">
-            <h2>Register Your Online Store</h2>
-            <p>Apna store banayein aur apne products hamare platform par sell karein!</p>
-            <form>
-                <div class="form-group">
-                    <label for="fullname">Full Name</label>
-                    <input type="text" id="fullname" placeholder="Apna poora naam likhein" required>
-                </div>
-                <div class="form-group">
-                    <label for="storename">Store Name</label>
-                    <input type="text" id="storename" placeholder="Apne store ya brand ka naam likhein" required>
-                </div>
-                <div class="form-group">
-                    <label for="phone">WhatsApp / Phone Number</label>
-                    <input type="tel" id="phone" placeholder="Contact number likhein" required>
-                </div>
-                <div class="form-group">
-                    <label for="category">Store Category</label>
-                    <select id="category">
-                        <option value="fashion">Fashion & Clothing</option>
-                        <option value="electronics">Electronics & Gadgets</option>
-                        <option value="shoes">Footwear</option>
-                        <option value="other">Other</option>
-                    </select>
-                </div>
-                <button type="submit" class="btn-submit">Submit Registration</button>
-            </form>
+    <h2>Register Your Online Store</h2>
+    <p>Apna store banayein aur apne products hamare platform par sell karein!</p>
+    <form action="https://formspree.io/f/xoeaypyg" method="POST">
+        
+        <div class="form-group">
+            <label for="fullname">Full Name</label>
+            <input type="text" id="fullname" name="fullname" placeholder="Apna poora naam likhein" required>
         </div>
-    </main>
+        
+        <div class="form-group">
+            <label for="storename">Store Name</label>
+            <input type="text" id="storename" name="storename" placeholder="Apne store ya brand ka naam likhen" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="phone">WhatsApp / Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="Contact number likhein" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="category">Store Category</label>
+            <select id="category" name="category">
+                <option value="fashion">Fashion & Clothing</option>
+                <option value="electronics">Electronics & Gadgets</option>
+                <option value="shoes">Footwear</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
+        
+        <button type="submit" class="btn-submit">Submit Registration</button>
+    </form>
+</div>
     <footer>
         <p>&copy; 2026 My Marketplace. All Rights Reserved.</p>
     </footer>
